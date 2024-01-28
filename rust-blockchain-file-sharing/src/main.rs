@@ -1,27 +1,17 @@
+// main.rs
 
-use serde::{Serialize, Deserialize};
-use std::fs::File;
-use std::io::Read;
-
-#[derive(Debug, Deserialize)]
-struct BlockConfig {
-  network: String,
-}
-
-fn read_blockchain_conf() -> Result<BlockConfig, Box<dyn std::error::Error>> {
-  let mut file = File::open("blockchain.conf")?;
-  let mut contents = String::new();
-  file.read_to_string(&mut contents)?;
-  
-  let config: BlockConfig = serde_yaml::from_str(&contents)?;
-  
-  Ok(config)
-}
+mod user_authentication;
+mod file_sharing;
+mod file;
 
 fn main() {
-    match read_blockchain_conf() {
-        Ok(config) => println!("{:?}", config),
-        Err(e) => println!("Error: {:?}", e),
-    }
-}
+    let username = "user1";
+    let password = "password1";
 
+    let file_to_share = file::File {
+        name: "example.txt".to_string(),
+        content: "This is the content of the file.".to_string(),
+    };
+
+    file_sharing::share_file(username, password, file_to_share);
+}

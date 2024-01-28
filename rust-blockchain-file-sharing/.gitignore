@@ -1,0 +1,32 @@
+# Ignore compiled files
+/target/
+
+# Ignore the Cargo.lock file
+Cargo.lock
+
+# Ignore generated documentation
+/doc/
+
+# Ignore the .env file if you're using it for sensitive data
+.env
+
+# Ignore hidden .DS_Store files on macOS
+.DS_Store
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# Ignore compiled Rust code
+**/*.rs.bk
+
+# Ignore build output
+/build/
+
+# Ignore any user-specific files or directories
+/.idea/
+*.iml
+*.ipr
+*.iws
+/.vscode/
+/.codelldb/
