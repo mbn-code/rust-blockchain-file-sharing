@@ -36,8 +36,8 @@ This project is a decentralized file-sharing application that ensures the confid
 - **file.rs:** Defines the structure of a file, including its name and content.
 
 ## Security
-[!CAUTION]
+> [!CAUTION]
 This is a simplified example and should be adapted for production use, incorporating additional security measures and thorough testing.
 
-[!IMPORTANT]
+> [!IMPORTANT]
 Ensure responsible usage and adhere to legal and ethical considerations when sharing files.
