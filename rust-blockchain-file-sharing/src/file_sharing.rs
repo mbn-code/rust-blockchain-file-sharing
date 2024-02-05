@@ -9,8 +9,7 @@ use web3::types::{Block, Transaction};
 use web3::Web3;
 
 // Ethereum smart contract ABI (generated from compilation)
-const FILE_SHARING_ABI: &amp;[u8] = include_bytes!(r"rust-blockchain-file-sharing\src\FileSharing.abi");
-
+const FILE_SHARING_ABI: &[u8] = include_bytes!("rust-blockchain-file-sharing/src/build/contracts/FileSharing.json");
 
 // Ethereum smart contract address
 const CONTRACT_ADDRESS: &str = "0xYourContractAddress";
@@ -53,19 +52,18 @@ pub fn share_file() {
         .expect("Failed to encode function data");
 
         // Create a signed Ethereum transaction
-        let transaction = Transaction {
-            from: sender_address.parse().expect("Invalid sender address"),
-            to: Some(CONTRACT_ADDRESS.parse().expect("Invalid contract address")),
-            gas: Some(100000),
-            gas_price: Some(1000000000), // Adjust gas price accordingly
-            data: Some(function_data),
+        let transaction = TransactionRequest {
+            gas: Some(100000.into()),
+            gas_price: Some(1000000000.into()), // Adjust gas price accordingly
+            input: Some(function_data.into()),
             ..Default::default()
         };
+        
 
         // Send the transaction to the Ethereum network
         let transaction_hash = web3
             .eth()
-            .send_transaction(transaction, None)
+            .send_transaction(transaction)
             .expect("Failed to send Ethereum transaction");
 
         // Wait for the transaction to be mined

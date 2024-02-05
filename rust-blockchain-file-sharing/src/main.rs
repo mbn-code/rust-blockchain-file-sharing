@@ -13,6 +13,6 @@ fn main() {
         content: "This is the content of the file.".to_string(),
     };
 
-    file_sharing::share_file(username, password, file_to_share);
+    file_sharing::share_file();
 }
 
